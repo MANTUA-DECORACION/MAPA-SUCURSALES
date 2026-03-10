@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sucursales Mantua</title>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+}
+
+#map{
+height:500px;
+width:100%;
+}
+
+.popup-btn{
+display:inline-block;
+margin-top:8px;
+padding:6px 10px;
+background:#111;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+var map = L.map('map').setView([20.8,-100.7],9);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+attribution:'© OpenStreetMap'
+}).addTo(map);
+
+var sucursales = [
+
+{
+nombre:"Mantua Celaya",
+coords:[20.914499,-100.757724],
+link:"https://maps.app.goo.gl/bQtHKzaGeG4tCywy6"
+},
+
+{
+nombre:"Mantua San Miguel de Allende",
+coords:[20.914,-100.745],
+link:"https://maps.app.goo.gl/XbSNbKLY9AKhbixf8"
+},
+
+{
+nombre:"Mantua León",
+coords:[21.125,-101.685],
+link:"https://maps.app.goo.gl/mevkenTmp5tjVqMG9"
+},
+
+{
+nombre:"Atención WhatsApp Mantua",
+coords:[20.914499,-100.757724],
+link:"https://wa.me/524612981077"
+}
+
+];
+
+sucursales.forEach(function(s){
+
+var marker=L.marker(s.coords).addTo(map);
+
+marker.bindPopup(
+"<b>"+s.nombre+"</b><br>"+
+"<a class='popup-btn' target='_blank' href='"+s.link+"'>Abrir ubicación</a>"
+);
+
+});
+
+</script>
+
+</body>
+</html>
